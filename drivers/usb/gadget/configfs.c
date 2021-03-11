@@ -178,7 +178,7 @@ struct gadget_config_name {
 };
 
 #define MAX_USB_STRING_LEN	126
-#define MAX_USB_STRING_WITH_NULL_LEN	(MAX_USB_STRING_LEN+1)
+#define USB_MAX_STRING_WITH_NULL_LEN	(USB_MAX_STRING_LEN+1)
 #ifdef CONFIG_USB_TYPEC_MANAGER_NOTIFIER
 int dwc3_gadget_get_cmply_link_state_wrapper(void)
 {
@@ -215,11 +215,19 @@ static int usb_string_copy(const char *s, char **s_copy)
 	if (copy) {
 		str = copy;
 	} else {
+<<<<<<< HEAD
 		str = kmalloc(MAX_USB_STRING_WITH_NULL_LEN, GFP_KERNEL);
 		if (!str)
 			return -ENOMEM;
 	}
 	strlcpy(str, s, MAX_USB_STRING_WITH_NULL_LEN);
+=======
+		str = kmalloc(USB_MAX_STRING_WITH_NULL_LEN, GFP_KERNEL);
+		if (!str)
+			return -ENOMEM;
+	}
+	strcpy(str, s);
+>>>>>>> 27b028b9c373... usb: gadget: configfs: Fix KASAN use-after-free
 	if (str[ret - 1] == '\n')
 		str[ret - 1] = '\0';
 	*s_copy = str;
