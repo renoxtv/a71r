@@ -5,7 +5,7 @@
 	.type	main,@function
 main:                                   // @main
 .Lfunc_begin0:
-	.file	1 "/home/oslv_team/OSLV/SM-A715F_EUR_RR_XX/Code/Kernel/out/../kernel/bounds.c"
+	.file	1 "/home/renox/kernel/a71r/out/../kernel/bounds.c"
 	.loc	1 17 0                  // ../kernel/bounds.c:17:0
 	.cfi_sections .debug_frame
 	.cfi_startproc
@@ -15,22 +15,22 @@ main:                                   // @main
 	.loc	1 19 2                  // ../kernel/bounds.c:19:2
 	//APP
 	
-.ascii "->NR_PAGEFLAGS 22 __NR_PAGEFLAGS"
+.ascii "->NR_PAGEFLAGS #22 __NR_PAGEFLAGS"
 	//NO_APP
 	.loc	1 20 2                  // ../kernel/bounds.c:20:2
 	//APP
 	
-.ascii "->MAX_NR_ZONES 3 __MAX_NR_ZONES"
+.ascii "->MAX_NR_ZONES #3 __MAX_NR_ZONES"
 	//NO_APP
 	.loc	1 22 2                  // ../kernel/bounds.c:22:2
 	//APP
 	
-.ascii "->NR_CPUS_BITS 3 ilog2(CONFIG_NR_CPUS)"
+.ascii "->NR_CPUS_BITS #3 ilog2(CONFIG_NR_CPUS)"
 	//NO_APP
 	.loc	1 24 2                  // ../kernel/bounds.c:24:2
 	//APP
 	
-.ascii "->SPINLOCK_SIZE 4 sizeof(spinlock_t)"
+.ascii "->SPINLOCK_SIZE #4 sizeof(spinlock_t)"
 	//NO_APP
 	.loc	1 27 2                  // ../kernel/bounds.c:27:2
 	ret
@@ -41,15 +41,15 @@ main:                                   // @main
                                         // -- End function
 	.section	.debug_str,"MS",@progbits,1
 .Linfo_string0:
-	.asciz	"Snapdragon LLVM ARM Compiler 10.0.6 for Android NDK" // string offset=0
+	.asciz	"Snapdragon LLVM ARM Compiler 8.0.6 for Android NDK (based on llvm.org 7.0+)" // string offset=0
 .Linfo_string1:
-	.asciz	"../kernel/bounds.c"    // string offset=52
+	.asciz	"../kernel/bounds.c"    // string offset=76
 .Linfo_string2:
-	.asciz	"/home/oslv_team/OSLV/SM-A715F_EUR_RR_XX/Code/Kernel/out" // string offset=71
+	.asciz	"/home/renox/kernel/a71r/out" // string offset=95
 .Linfo_string3:
-	.asciz	"main"                  // string offset=127
+	.asciz	"main"                  // string offset=123
 .Linfo_string4:
-	.asciz	"int"                   // string offset=132
+	.asciz	"int"                   // string offset=128
 	.section	.debug_abbrev,"",@progbits
 	.byte	1                       // Abbreviation Code
 	.byte	17                      // DW_TAG_compile_unit
@@ -79,8 +79,6 @@ main:                                   // @main
 	.byte	6                       // DW_FORM_data4
 	.byte	64                      // DW_AT_frame_base
 	.byte	24                      // DW_FORM_exprloc
-	.ascii	"\227B"                 // DW_AT_GNU_all_call_sites
-	.byte	25                      // DW_FORM_flag_present
 	.byte	3                       // DW_AT_name
 	.byte	14                      // DW_FORM_strp
 	.byte	58                      // DW_AT_decl_file
@@ -109,8 +107,7 @@ main:                                   // @main
 	.byte	0                       // EOM(3)
 	.section	.debug_info,"",@progbits
 .Lcu_begin0:
-	.word	.Ldebug_info_end0-.Ldebug_info_start0 // Length of Unit
-.Ldebug_info_start0:
+	.word	71                      // Length of Unit
 	.hword	4                       // DWARF version number
 	.word	.debug_abbrev           // Offset Into Abbrev. Section
 	.byte	8                       // Address Size (in bytes)
@@ -127,7 +124,6 @@ main:                                   // @main
 	.word	.Lfunc_end0-.Lfunc_begin0 // DW_AT_high_pc
 	.byte	1                       // DW_AT_frame_base
 	.byte	111
-                                        // DW_AT_GNU_all_call_sites
 	.word	.Linfo_string3          // DW_AT_name
 	.byte	1                       // DW_AT_decl_file
 	.byte	16                      // DW_AT_decl_line
@@ -139,8 +135,10 @@ main:                                   // @main
 	.byte	5                       // DW_AT_encoding
 	.byte	4                       // DW_AT_byte_size
 	.byte	0                       // End Of Children Mark
-.Ldebug_info_end0:
-	.ident	"Snapdragon LLVM ARM Compiler 10.0.6 for Android NDK"
+	.section	.debug_macinfo,"",@progbits
+	.byte	0                       // End Of Macro List Mark
+
+	.ident	"Snapdragon LLVM ARM Compiler 8.0.6 for Android NDK (based on llvm.org 7.0+)"
 	.section	".note.GNU-stack","",@progbits
 	.section	.debug_line,"",@progbits
 .Lline_table_start0:
