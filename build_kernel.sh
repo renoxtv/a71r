@@ -5,7 +5,7 @@ export ARCH=arm64
 mkdir out
 
 BUILD_CROSS_COMPILE=~/kernel/toolchain/aarch64-linux-android-4.9/bin/aarch64-linux-android-
-KERNEL_LLVM_BIN=~/kernel/toolchain/qcom-clang-8/bin/clang
+KERNEL_LLVM_BIN=~/kernel/toolchain/qcom10/bin/clang
 CLANG_TRIPLE=aarch64-linux-gnu-
 KERNEL_MAKE_ENV="DTC_EXT=$(pwd)/tools/dtc CONFIG_BUILD_ARM64_DT_OVERLAY=y"
 
