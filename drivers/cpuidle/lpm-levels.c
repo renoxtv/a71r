@@ -1092,10 +1092,6 @@ static int cluster_configure(struct lpm_cluster *cluster, int idx,
 		return -EPERM;
 
 	if (idx != cluster->default_level) {
-		sec_debug_cluster_lpm_log(cluster->cluster_name, idx,
-			cluster->num_children_in_sync.bits[0],
-			cluster->child_cpus.bits[0], from_idle, 1);
-
 		trace_cluster_enter(cluster->cluster_name, idx,
 			cluster->num_children_in_sync.bits[0],
 			cluster->child_cpus.bits[0], from_idle);
@@ -1265,10 +1261,6 @@ static void cluster_unprepare(struct lpm_cluster *cluster,
 	trace_cluster_exit(cluster->cluster_name, cluster->last_level,
 			cluster->num_children_in_sync.bits[0],
 			cluster->child_cpus.bits[0], from_idle);
-
-	sec_debug_cluster_lpm_log(cluster->cluster_name, cluster->last_level,
-			cluster->num_children_in_sync.bits[0],
-			cluster->child_cpus.bits[0], from_idle, 0);
 
 	last_level = cluster->last_level;
 	cluster->last_level = cluster->default_level;
@@ -1487,8 +1479,6 @@ exit:
 	dev->last_residency = ktime_us_delta(ktime_get(), start);
 	update_history(dev, idx);
 	trace_cpu_idle_exit(idx, success);
-	sec_debug_cpu_lpm_log(dev->cpu, idx, success, 0);
-
 	if (lpm_prediction && cpu->lpm_prediction) {
 		histtimer_cancel();
 		clusttimer_cancel();
@@ -1741,22 +1731,6 @@ static int lpm_suspend_prepare(void)
 	gpio_dvs_set_sleepgpio();
 #endif
 #endif
-
-#ifdef CONFIG_SEC_PM
-	regulator_showall_enabled();
-	sec_clock_debug_print_enabled();
-
-	debug_masterstats_show("entry");
-	debug_rpmstats_show("entry");
-#endif
-
-#ifdef CONFIG_SEC_PM_DEBUG
-	if (msm_pm_sleep_sec_debug) {
-		msm_gpio_print_enabled();
-		sec_gpio_debug_print();
-		print_gpio_exp(NULL);
-	}
-#endif
 	lpm_stats_suspend_enter();
 
 	return 0;
@@ -1766,12 +1740,6 @@ static void lpm_suspend_wake(void)
 {
 	suspend_in_progress = false;
 	lpm_stats_suspend_exit();
-
-#ifdef CONFIG_SEC_PM
-	sec_debug_print_sleep_time();
-	debug_rpmstats_show("exit");
-	debug_masterstats_show("exit");
-#endif
 }
 
 static int lpm_suspend_enter(suspend_state_t state)
