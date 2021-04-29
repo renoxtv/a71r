@@ -67,20 +67,6 @@
 		reg = <0x0 0x80001000 0x0 0x00001000>;
 	};
 
-	/* rkp_region reserves 2MB for UH_LOG and UH_STATIC_HEAP */
-	/* CAUSION: DO NOT reserve 0xB0200000 ~ 0xB1800000 region for RKP at the runtime */
-	rkp_region: rkp_region@B0200000 {
-		compatible = "removed-dma-pool";
-		reg = <0x0 0xB0200000 0x0 0x00200000>;
-	};
-
-	/*to reserve 1MB for TIMA */
-	tima_mem: tima_region@B0100000 {
-		compatible = "removed-dma-pool";
-		no-map;
-		reg = <0 0xB0100000 0 0x100000>;
-	};
-
 	modem_shared_mem: modem_shared_mem_region@BA000000 {
 		compatible = "modem-removed-dma-pool";
 		no-map;
